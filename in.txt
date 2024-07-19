@@ -1,0 +1,9 @@
+1
+2
+stringi
+s
+velosipedistiaa
+1.123123E-23
+1.1E-7
+10.25
+13.228
