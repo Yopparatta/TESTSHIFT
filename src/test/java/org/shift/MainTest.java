@@ -33,7 +33,6 @@ class MainTest {
         String[] args = new String[]{
                 "-p", "example-",
                 "-o", outputPath,
-                "-a",
                 "-f",
                 inputFile, inputFile2
         };

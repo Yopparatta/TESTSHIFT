@@ -31,4 +31,10 @@ public class SortedSourceData {
     public void addString(String data) {
         getStringData().add(data);
     }
+
+    public String toShortStatisticString() {
+        return "There are: \n" + this.intData.size() + " Integers\n" +
+                this.doubleData.size() + " Doubles\n" +
+                this.stringData.size() + " Strings";
+    }
 }

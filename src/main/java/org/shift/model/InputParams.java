@@ -5,12 +5,15 @@ import org.shift.enums.StatisticType;
 public class InputParams {
     private static boolean appendable = false; //Переменная указывает на наличие аргумента -a
     private static String fileNamePrefix; //Переменная указывающая префикс имени файла
-    private static String filePath; //Переменная указывающая на путь к файлу
+    private static String outputFilePath; //Переменная указывающая на путь к файлу
     private static StatisticType statisticType; // Переменная указывающая на аргумент -s или -f, краткая и полная статистика
 
     private static InputParams instance;
-    private InputParams(){}
-    public static InputParams getInstance(){
+
+    private InputParams() {
+    }
+
+    public static InputParams getInstance() {
         if (instance == null) {
             instance = new InputParams();
         }
@@ -22,7 +25,7 @@ public class InputParams {
     }
 
     public void setAppendable(boolean appendable) {
-        InputParams.appendable = appendable;
+        this.appendable = appendable;
     }
 
     public String getFileNamePrefix() {
@@ -30,15 +33,15 @@ public class InputParams {
     }
 
     public void setFileNamePrefix(String fileNamePrefix) {
-        InputParams.fileNamePrefix = fileNamePrefix;
+        this.fileNamePrefix = fileNamePrefix;
     }
 
     public String getFilePath() {
-        return filePath;
+        return outputFilePath;
     }
 
-    public void setFilePath(String filePath) {
-        InputParams.filePath = filePath;
+    public void setFilePath(String outputFilePath) {
+        this.outputFilePath = outputFilePath;
     }
 
     public StatisticType getStatisticType() {

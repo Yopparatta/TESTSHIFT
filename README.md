@@ -40,11 +40,3 @@ mvn clean package -Dmaven.test.skip=true
 1. По-умолчанию IDE (если вы используете IDEA) подключит конфигурацию из [файла](.run/example-run-config.run.xml)
 2. Вам нужно будет её выбрать и запустить
    ![img.png](img/img-run-config.png)
-
-## Пример запуска
-
-Можно посмотреть [тестовый класс](src/test/java/org/shift/MainTest.java).
-
-1. По-умолчанию IDE (если вы используете IDEA) подключит конфигурацию из [файла](.run/example-run-config.run.xml) 
-2. Вам нужно будет её выбрать и запустить 
-![img.png](img/img-run-config.png)
