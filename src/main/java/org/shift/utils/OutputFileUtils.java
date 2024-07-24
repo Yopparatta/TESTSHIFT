@@ -21,7 +21,8 @@ public class OutputFileUtils {
             try {
                 Files.createFile(ouputFilePath);
             } catch (IOException e) {
-                System.out.println("File cannot be created");
+                String message = e.getMessage() == null ? "" : e.getMessage();
+                System.out.println("File cannot be created" + message);
             }
         }
 

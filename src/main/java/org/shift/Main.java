@@ -149,13 +149,18 @@ public class Main {
     private static void fileWrite(SortedSourceData sortedData) { //Метод записи в выходные файлы
         try {
             OutputFileUtils.createOutputDirectory(InputParams.getFilePath());
-
+            if (!sortedData.getIntData().isEmpty()){
             OutputFileUtils.writeOutputFile(InputParams.getFilePath(), InputParams.getFileNamePrefix(),
                     OutputFileUtils.OUTPUT_INTEGER_POSTFIX, InputParams.isAppendable(), sortedData.getIntData());
+            }
+            if (!sortedData.getDoubleData().isEmpty()){
             OutputFileUtils.writeOutputFile(InputParams.getFilePath(), InputParams.getFileNamePrefix(),
                     OutputFileUtils.OUTPUT_DOUBLE_POSTFIX, InputParams.isAppendable(), sortedData.getDoubleData());
+            }
+            if (!sortedData.getStringData().isEmpty()){
             OutputFileUtils.writeOutputFile(InputParams.getFilePath(), InputParams.getFileNamePrefix(),
                     OutputFileUtils.OUTPUT_STRING_POSTFIX, InputParams.isAppendable(), sortedData.getStringData());
+            }
         } catch (NullPointerException e) {
             String message = e.getMessage() == null ? "" : e.getMessage();
             System.out.println("Cant print data in text! NullPointerException" + message);
