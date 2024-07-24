@@ -2,7 +2,7 @@
 
 Тестовое задание для поступления на курс SHIFT по Java.
 
-ТЗ: TODO ссылчока
+ТЗ: [ссылка](https://github.com/Yopparatta/TESTSHIFT/blob/master/Java_TestTask.pdf)
 
 ## Функционал и используемые технологии
   
