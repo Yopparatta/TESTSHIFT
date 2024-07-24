@@ -101,7 +101,7 @@ public class Main {
     private static SortedSourceData lookingTypeOfNumber(List<String> allValuesFromFiles) { //Метод, разбивающий Лист на двумерный массив, где каждая строка - разный тип данных, а в ячейках хранятся данные
         SortedSourceData sortedData = new SortedSourceData();
         try {
-
+            InputParams input = InputParams.getInstance();
             for (String elem : allValuesFromFiles)
             {
                 boolean isFoundMatch=false;
@@ -129,12 +129,12 @@ public class Main {
                 sortedData.addString(elem);
             }
 
-            if (StatisticType.SHORT.equals(InputParams.getStatisticType())) { //Вывод различных видов статистики
+            if (StatisticType.SHORT.equals(input.getStatisticType())) { //Вывод различных видов статистики
                 System.out.println("There are: \n" + sortedData.getIntData().size() + " Integers\n" +
                         sortedData.getDoubleData().size() + " Doubles\n" +
                         sortedData.getStringData().size() + " Strings");
             }
-            if (StatisticType.FULL.equals(InputParams.getStatisticType())) {
+            if (StatisticType.FULL.equals(input.getStatisticType())) {
                 fullStatistic(sortedData);
             }
 
@@ -148,18 +148,19 @@ public class Main {
 
     private static void fileWrite(SortedSourceData sortedData) { //Метод записи в выходные файлы
         try {
-            OutputFileUtils.createOutputDirectory(InputParams.getFilePath());
+            InputParams input = InputParams.getInstance();
+            OutputFileUtils.createOutputDirectory(input.getFilePath());
             if (!sortedData.getIntData().isEmpty()){
-            OutputFileUtils.writeOutputFile(InputParams.getFilePath(), InputParams.getFileNamePrefix(),
-                    OutputFileUtils.OUTPUT_INTEGER_POSTFIX, InputParams.isAppendable(), sortedData.getIntData());
+                OutputFileUtils.writeOutputFile(input.getFilePath(), input.getFileNamePrefix(),
+                        OutputFileUtils.OUTPUT_INTEGER_POSTFIX, input.isAppendable(), sortedData.getIntData());
             }
             if (!sortedData.getDoubleData().isEmpty()){
-            OutputFileUtils.writeOutputFile(InputParams.getFilePath(), InputParams.getFileNamePrefix(),
-                    OutputFileUtils.OUTPUT_DOUBLE_POSTFIX, InputParams.isAppendable(), sortedData.getDoubleData());
+                OutputFileUtils.writeOutputFile(input.getFilePath(), input.getFileNamePrefix(),
+                        OutputFileUtils.OUTPUT_DOUBLE_POSTFIX, input.isAppendable(), sortedData.getDoubleData());
             }
             if (!sortedData.getStringData().isEmpty()){
-            OutputFileUtils.writeOutputFile(InputParams.getFilePath(), InputParams.getFileNamePrefix(),
-                    OutputFileUtils.OUTPUT_STRING_POSTFIX, InputParams.isAppendable(), sortedData.getStringData());
+                OutputFileUtils.writeOutputFile(input.getFilePath(), input.getFileNamePrefix(),
+                        OutputFileUtils.OUTPUT_STRING_POSTFIX, input.isAppendable(), sortedData.getStringData());
             }
         } catch (NullPointerException e) {
             String message = e.getMessage() == null ? "" : e.getMessage();
@@ -169,8 +170,9 @@ public class Main {
 
     private static Path pathFinder() { // Метод поиска пути. В случае, если пользователь введет неверный путь - программа выкинет исключение
         Path path;
+        InputParams input = InputParams.getInstance();
         try {
-            path = Paths.get(InputParams.getFilePath());
+            path = Paths.get(input.getFilePath());
             return path;
         } catch (InvalidPathException e) {
             String message = e.getMessage() == null ? "" : e.getMessage();
@@ -181,15 +183,15 @@ public class Main {
 
     private static String[] readArgsWithReturnInputFilePaths(String[] args) { //Метод, считывающий аргументы, введенные в консоли
         int j = 0;
-        InputParams.getInstance();
+        InputParams input = InputParams.getInstance();
         String[] fileName = new String[args.length];
         for (int i = 0; i < args.length; i++) { //Перебор по всему массиву args[]
             if (!args[i].isEmpty()) {
                 switch (args[i]) { //Поиск соответствий с конкретными аргументами
                     case "-o"://Задание пути к файлу
-                        InputParams.setFilePath(args[i + 1]);
+                        input.setFilePath(args[i + 1]);
                         try {
-                            InputParams.setFilePath(pathFinder().toString());
+                            input.setFilePath(pathFinder().toString());
                         } catch (Exception e) {
                             String message = e.getMessage() == null ? "" : e.getMessage();
                             System.out.println("\n Invalid Path! " + message);
@@ -197,20 +199,20 @@ public class Main {
                         args[i] = null;
                         break;
                     case "-p"://Задание префикса названия файла
-                        InputParams.setFileNamePrefix(args[i + 1]);
+                        input.setFileNamePrefix(args[i + 1]);
                         args[i] = null;
                         break;
                     case "-a"://Выбор создания нового файла, либо добавления в старый. Appendable = true - добавление.
                         //Appendable = false - перезапись файла.
-                        InputParams.setAppendable(true);
+                        input.setAppendable(true);
                         args[i] = null;
                         break;
                     case "-s"://Краткая статистика
-                        InputParams.setStatisticType(StatisticType.SHORT);
+                        input.setStatisticType(StatisticType.SHORT);
                         args[i] = null;
                         break;
                     case "-f"://Полная статистика
-                        InputParams.setStatisticType(StatisticType.FULL);
+                        input.setStatisticType(StatisticType.FULL);
                         args[i] = null;
                         break;
                 }

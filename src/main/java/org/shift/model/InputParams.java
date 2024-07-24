@@ -17,35 +17,35 @@ public class InputParams {
         return instance;
     }
 
-    public static boolean isAppendable() {
+    public boolean isAppendable() {
         return appendable;
     }
 
-    public static void setAppendable(boolean appendable) {
+    public void setAppendable(boolean appendable) {
         InputParams.appendable = appendable;
     }
 
-    public static String getFileNamePrefix() {
+    public String getFileNamePrefix() {
         return fileNamePrefix;
     }
 
-    public static void setFileNamePrefix(String fileNamePrefix) {
+    public void setFileNamePrefix(String fileNamePrefix) {
         InputParams.fileNamePrefix = fileNamePrefix;
     }
 
-    public static String getFilePath() {
+    public String getFilePath() {
         return filePath;
     }
 
-    public static void setFilePath(String filePath) {
+    public void setFilePath(String filePath) {
         InputParams.filePath = filePath;
     }
 
-    public static StatisticType getStatisticType() {
+    public StatisticType getStatisticType() {
         return statisticType;
     }
 
-    public static void setStatisticType(StatisticType statisticType) {
+    public void setStatisticType(StatisticType statisticType) {
         InputParams.statisticType = statisticType;
     }
 }
